@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🦷 서울권치과 업무 매뉴얼</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e40af">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="치과매뉴얼">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  background: #f1f5f9;
+}
+
+/* ── 상단 고정 영역 ── */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ── 헤더 ── */
+header {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: white;
+  padding: 14px 16px 10px;
+}
+header h1 { font-size: 17px; font-weight: 800; }
+header p  { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+/* ── 검색창 ── */
+#search-wrap {
+  background: #1e40af;
+  padding: 0 14px 12px;
+}
+#search {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px 12px 40px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+  color: #1e293b;
+}
+.search-box { position: relative; }
+.search-icon {
+  position: absolute;
+  left: 13px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
+#clear-btn {
+  position: absolute;
+  right: 12px; top: 50%;
+  transform: translateY(-50%);
+  background: #94a3b8;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 탭 ── */
+#tabs {
+  display: flex;
+  overflow-x: auto;
+  background: white;
+  border-bottom: 2px solid #e2e8f0;
+  scrollbar-width: none;
+}
+#tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  touch-action: manipulation;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  user-select: none;
+}
+.tab.active { color: #2563eb; border-bottom-color: #2563eb; }
+
+/* ── 콘텐츠 영역 ── */
+#content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 60px;
+}
+#no-result {
+  display: none;
+  min-height: 50vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: #94a3b8;
+}
+#no-result .icon { font-size: 40px; }
+
+/* ── 카드 ── */
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  min-height: 64px;
+  -webkit-user-select: none;
+}
+.card-title { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.card-emoji { font-size: 22px; flex-shrink: 0; }
+.card-name { font-size: 15px; font-weight: 700; color: #1e293b; }
+.card-sub  { font-size: 12px; color: #64748b; margin-top: 1px; }
+.card-arrow {
+  font-size: 11px;
+  color: #94a3b8;
+  transition: transform .2s;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.card.open .card-arrow { transform: rotate(180deg); }
+
+.card-body {
+  display: none;
+  border-top: 1px solid #f1f5f9;
+}
+.card.open .card-body { display: block; }
+
+/* ── 섹션 ── */
+.section {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.section:last-child { border-bottom: none; }
+.sec-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 6px;
+}
+.sec-content {
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+.sec-img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 8px;
+  margin: 6px 0;
+  display: block;
+}
+.tip-box {
+  background: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.6;
+}
+.tip-box .tip-title { font-weight: 700; margin-bottom: 4px; }
+
+/* 검색 하이라이트 */
+mark {
+  background: #fef08a;
+  color: inherit;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+<header>
+  <h1>🦷 서울권치과 업무 매뉴얼</h1>
+  <p>준비물 · 술식 순서 · 용어 검색</p>
+</header>
+
+<div id="install-banner" style="display:none; background:#1e40af; color:white; padding:10px 14px; align-items:center; justify-content:space-between; gap:10px;">
+  <span style="font-size:13px;">📲 홈 화면에 추가하면 오프라인에서도 사용 가능!</span>
+  <div style="display:flex; gap:8px; flex-shrink:0;">
+    <button id="install-btn" style="background:white; color:#1e40af; border:none; border-radius:8px; padding:6px 12px; font-size:13px; font-weight:700; cursor:pointer;">추가</button>
+    <button id="install-close" style="background:transparent; border:1px solid rgba(255,255,255,0.5); color:white; border-radius:8px; padding:6px 10px; font-size:13px; cursor:pointer;">✕</button>
+  </div>
+</div>
+
+<div id="search-wrap">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="검색어 입력 (예: 엔도, 크라운, 준비물...)" oninput="onSearch()" />
+    <button id="clear-btn" onclick="clearSearch()">✕</button>
+  </div>
+</div>
+
+<div id="tabs">
+  <div class="tab active" data-tab="all">전체</div>
+  <div class="tab" data-tab="endo">엔도</div>
+  <div class="tab" data-tab="implant">임플란트</div>
+  <div class="tab" data-tab="gum">잇몸수술</div>
+  <div class="tab" data-tab="prosthesis">보철</div>
+  <div class="tab" data-tab="conservation">보존</div>
+  <div class="tab" data-tab="resin">레진</div>
+  <div class="tab" data-tab="equipment">장비</div>
+  <div class="tab" data-tab="terms">용어</div>
+</div>
+</div><!-- /.sticky-top -->
+
+<div id="content"></div>
+<div id="no-result">
+  <div class="icon">🔍</div>
+  <p>검색 결과가 없습니다.</p>
+</div>
+
+<script>
+const DATA = [
+
+  // ═══════════════════════════════════════
+  // 엔도
+  // ═══════════════════════════════════════
+  {
+    id: 'endo1', cat: 'endo', emoji: '🦷', name: '엔도 첫날 A/O',
+    sub: 'Access Opening · 신경치료 시작',
+    keywords: ['엔도','신경','첫날','ao','access','opening','아티카인','러버댐','캐비톤'],
+    sections: [
+      { title: '전체 Flow', content: `마취 (구치부: 아티카인, 마취 콜 먼저!)
+러버댐
+Access Opening
+Working length determination
+Canal enlargement (보통 F2까지, 석회화 심한 경우 S1·S2까지)
+Canal medication (수산화칼슘 약제 처치)
+Cotton + Caviton → 알콜 cotton으로 표면 정리` },
+      { title: '진료준비 [Dr.W / Dr.G / Dr.L]', content: `인젝 (아티카인/리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.25)
+파일꽂이
+NaOcl (신경관 막혀있거나 re-endo인 경우 여러 개 준비)
+캐비톤 / 스타퍼
+메탈석션
+칼시팩스 (수산화칼슘)
+스케일러 tip
+W/L 적을 메모지
+Core (wall 쌓고 시작할 경우, 2급 와동 시 토플마이어 준비)
+보철물 제거 시: crown remover, 그리퍼
+  · Zir → zir cutting bur
+  · Gold cr → 330 bur
+  · Gold inlay → 330 + spoon excavater
+  · PFM → zir cutting bur + 330
+필요 시 UC One` },
+      { title: '진료준비 [Dr.H]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
+NaOcl, Calcipex, p.p 04.25
+Clamp, rubber dam forcep, xs gloves, shield (필수!)
+신경관 막혀있을 경우 새 파일 (첫날 sx ~ f2)` },
+      { title: '⚠️ Tip', content: `• 첫날은 상 차리기 전 마취 콜 먼저!
+• Root 끝까지 나온 PA 촬영
+• Endo 동의서 (crack tooth → crack 동의서 / 보철 제거 시 → 적출물 동의서)
+• NaOcl 뚜껑 꽉 잠구기`, tip: true },
+    ]
+  },
+  {
+    id: 'endo2', cat: 'endo', emoji: '🦷', name: '엔도 두번째날 C/E',
+    sub: 'Canal Enlargement · 근관 확대',
+    keywords: ['엔도','신경','두번째','ce','canal','enlargement','캐비톤'],
+    sections: [
+      { title: '전체 Flow', content: `마취
+캐비톤 제거
+Canal enlargement (주로 F3·F4 / 전치부·팔라탈캐널은 F5까지도)
+Canal medication (수산화칼슘 약제 처치)` },
+      { title: '진료준비 [Dr.W / Dr.G / Dr.H]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
+NaOcl, Calcipex
+p.p 보통 04.30 / 04.35
+Clamp, rubber dam forcep + rubber dam 필수
+s gloves, 파일꽂이` },
+      { title: '진료준비 [Dr.H 별도]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
+NaOcl, Seline, Calcipex, p.p 04.35
+Clamp, rubber dam forcep (rubber dam X)
+xs gloves
+스케일러 팁 (캐비톤 제거 시)` },
+      { title: '⚠️ Tip', content: `• Working length, 확대파일, Patency 여부 체크해서 적어놓기
+• 첫째날 못 찾은 신경관 있거나 특이사항 있으면 적어놓기
+• NaOcl 뚜껑 꽉 잠구기`, tip: true },
+    ]
+  },
+  {
+    id: 'endo3', cat: 'endo', emoji: '🦷', name: '엔도 세번째날 C/F',
+    sub: 'Canal Filling · 근관 충전',
+    keywords: ['엔도','신경','세번째','cf','canal','filling','충전','gp','ceraseal'],
+    sections: [
+      { title: '전체 Flow', content: `마취 → 캐비톤 제거 → Canal irrigation → Canal filling → Resin core` },
+      { title: '진료준비 [Dr.W / Dr.G / Dr.L]', content: `기본 bur + endo bur + prep bur (전치부: 세라폴)
+Endo explorer, Endo ruler
+NaOcl, Ceraseal
+P.P 04.30 or 04.35
+G.P ML.029, Gp cone cutter, Plugger
+Duo alpha & beta, uc one
+Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
+Clamp, rubber dam forcep, rubber dam
+인접치 충치 깊거나 pano·pa 보고 필요시 토플마이어 준비
+PA 카트` },
+      { title: '진료준비 [Dr.H]', content: `동일하나 rubber dam X` },
+      { title: '⚠️ Tip', content: `• NaOcl 뚜껑 꽉 잠구기
+• 플러거 번호 맞춰서 준비 (두께 다름)`, tip: true },
+    ]
+  },
+  {
+    id: 'endo4', cat: 'endo', emoji: '🦷', name: '실활치미백',
+    sub: '신경치료 후 변색치아 미백',
+    keywords: ['실활치','미백','변색','cf','caviton','lcgi','코어'],
+    sections: [
+      { title: '개요', content: `신경치료 후 단단한 재료인 core를 메꾸기 전에 시행하는 진료
+신경 괴사 등의 이유로 변색된 치아 내부에 약제를 넣어 치아 색을 밝게 만드는 진료
+보통 CF 날 같이 진행
+시작 전 지대치 상태 Contrast 촬영` },
+      { title: '진료술식 [1회차]', content: `gp cone CEJ 하방으로 round bur로 다듬은 후 LCGI 충전
+치아 내부에 미백약제 투입
+  → 미백약제를 증류수 or 과산화수소에 mix 한 후 아말감 캐리어에 담아서 드림
+     (증류수 드릴게요 하고 여쭤보기)
+코튼팔렛 & 마이크로브러쉬로 실활치 미백 다지기
+  → 거즈 들고 버리는 코튼팔렛 받기 / 최근에는 브러쉬 사용량 더 많으심. 거즈로 브러쉬 닦아드리기
+캐비톤 충전 후 알콜 코튼팔렛으로 마무리 + tem re set` },
+      { title: '진료술식 [2회차/N회차]', content: `원하는 만큼 밝아질 때까지 반복 후 Core로 마무리 (보통 3회차에 마무리)
+캐비톤 제거 (Dr.W 루트zx bur / Dr.H 스케일러)
+치아 내부에 미백약제 투입 (2회차) or 마무리 시 core (3회차)
+캐비톤 충전 후 알콜 코튼팔렛으로 마무리 (2회차) or core 후 tem re set (마무리)
+마무리 시 tem 릴라이닝 해야하는 경우 많음` },
+      { title: '진료준비 [1회차]', content: `기본기구
+기본 bur + endo bur
+Endo explorer + endo ruler
+Paper point
+Plugger + 마이크로브러쉬 [작은 tip or post 전용 tip]
+증류수 or 과산화수소
+미백 약제
+코튼팔렛 + 캐비톤 + 알콜솜
+Amalgam plugger
+Lc curing gi + 건 + mixing pad + 큐어링 (gp cone 위에 LCGI 사용)
+PA 카트
+필요 시 러버댐 (clamp 통 준비)
+FG angle`, images: ['15bcd4aa_IMG_5165.jpeg'] },
+      { title: '진료준비 [2회차/N회차]', content: `기본기구
+기본 bur + endo bur (마무리 날은 prep bur / 세라폴 같이 준비)
+Endo explorer + endo ruler
+Paper point
+Plugger
+증류수 or 과산화수소
+미백 약제
+코튼팔렛 + 캐비톤 + 알콜솜 or core
+Amalgam plugger
+마이크로브러쉬 [작은 tip or post 전용 tip]
+마무리 시 Core (3회차에 준비) / 3M Bonding → Opti Bond X` },
+      { title: '⚠️ Tip', content: `• 매 진료마다 tem 제거 전 Bite shell 있는지 ck
+• 매 진료마다 Tem 빼고 contrast photo 촬영
+• 마무리 시 prep 후 지대치 contrast photo`, tip: true },
+    ]
+  },
+  {
+    id: 'endo5', cat: 'endo', emoji: '🦷', name: 'Post & Core',
+    sub: '포스트 & 코어 · 치질 보강',
+    keywords: ['post','core','포스트','코어','fiber','relyX','rely','시멘트'],
+    sections: [
+      { title: '전체 Flow', content: `캐비톤 제거 후 Low handpiece로 포스트 전용 드릴 → 기둥 공간 확보
+드릴링 후 3-way 시린지로 수세
+엣칭 → 수세 (와동에 메탈석션 / 살리바)
+3M bonding (post 전용 브러쉬, 라이트 바꾸기)
+Air 불고 p.p point 사용 후 큐어링 (p.p point 사용 전 큐어링 금지!)
+Post 전처리
+Rely X universal 시멘트 믹스 (넉넉하게, tip에 시멘트 나오는지 확인)
+Post 시적 → explorer로 과잉 시멘트 제거
+핀셋으로 post 고정 후 큐어링
+레진 쌓으면서 큐어링 (조금씩 / 마지막 큐어링 20초)
+High handpiece로 post 절단 → Prep` },
+      { title: '진료준비', content: `기본 bur + endo bur + prep bur + 세라폴 [전치부]
+엣칭, Endo explorer + endo ruler
+Paper point (04.35)
+Plugger (rubberstop 있는지 ck)
+3M single bond, Mono bond
+Rely X universal cement + Mixing pad + gi gun
+Post용 microbrush
+Core: BW 2ea / OW [전치부] / 참코어 [전치부]
+큐어링 + 프로택터
+Fiber Post
+러버댐 + 클램프 통` },
+      { title: '⚠️ 주의사항', content: `• 당일 CF 진행 시 Post & core 진행 X
+• 치질 부족 경우 블리딩 잡을 재료 같이 준비 (cord 00 zero, cord packer, 보스민, Tedlon, 치실고리)
+• Core 쌓는 도중 블리딩 → 메탈석션 설측에 계속 대기
+• 전치부+여러 치아 시 러버댐 펀치 뚫어놓기 X (5mm 간격 유지)
+• 한손으로 메탈 계속 잡고있는 경우 시멘트 믹싱 세컨 호출`, tip: true },
+    ]
+  },
+  {
+    id: 'endo6', cat: 'endo', emoji: '🦷', name: 'Cr Remove',
+    sub: '크라운 제거',
+    keywords: ['cr','remove','크라운','제거','그리퍼','zir','gold','pfm'],
+    sections: [
+      { title: '전체 Flow', content: `Cr cutting → Cr remover 사용` },
+      { title: '진료준비', content: `기본기구, 마취
+기본 bur + prep bur (전치부: 세라폴)
+그리퍼, Cr remover
+새 버 준비:
+  · Zir → Zir cutting bur (Diamond bur: 까만띠)
+  · PFZ → zir cut + 330
+  · Gold → 330 bur
+자동 & 수동 이젝터
+메탈석션` },
+      { title: '⚠️ Tip', content: `• 전치부/구치부 브릿지는 바이트쉘 찍어두기
+• 환자 크라운 삼키지 않도록 주의: 메탈석션 준비한 상태로 집중
+• PA 찍고 수복물 제거 청구
+• Gold inlay & Gold cr 제거 시 적출물 동의서 받고 챙겨드리기`, tip: true },
+    ]
+  },
+  {
+    id: 'endo7', cat: 'endo', emoji: '🦷', name: 'Re-endo 시작',
+    sub: '재신경치료 시작 · 기존 충전재 제거',
+    keywords: ['reendo','re-endo','재신경','솔벤트','hfile','gutta','percha'],
+    sections: [
+      { title: '전체 Flow', content: `기존 수복물 제거
+Cr 내부 오염 치질 제거 및 필요 시 Core wall
+Access Opening (기존 근관 입구 재형성)
+근관 내 기존 충전재 제거:
+  1. Gutta-percha 제거
+  2. Dr.H 솔벤트 사용
+  3. 파일(NiTi, H-file 등) 사용
+Working Length 재측정
+Cleaning & Shaping (근관 확대, NaOCl 등으로 세척)
+Canal Medication (수산화칼슘 사용)
+코튼 팔렛 넣고 캐비톤 마무리` },
+      { title: '진료준비 [Dr.W, Dr.G]', content: `Cr remover set
+인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.25 / 04.30)
+파일꽂이
+NaOcl (여러개 준비)
+캐비톤 / 스타퍼
+메탈석션
+칼시팩스 (수산화칼슘)
+W/L 적을 메모지
+필요 시 Core, UC One, H file
+Rubber dam set, PA`, images: ['590ec696_867C6D1E-AC50-4FB0-A857-4B90F7642E25.jpeg'] },
+      { title: '진료준비 [Dr.H]', content: `Cr remover set
+인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur
+Paper point (보통 04.25 / 04.35)
+NaOcl (여러개 준비)
+캐비톤 / 스타퍼, 메탈석션
+칼시팩스, W/L 메모지
+필요 시 Core, UC One, 솔벤트
+Rubber dam forceps + clamp, PA`, images: ['22fa72fe_E5CA2771-1672-4BFC-A9EB-8B1D4A05A505.jpeg'] },
+      { title: '진료준비 [Dr.L]', content: `Cr remover set
+인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.25 / 04.35)
+파일꽂이
+NaOcl (여러개 준비)
+캐비톤 / 스타퍼, 메탈석션
+칼시팩스, W/L 메모지
+필요 시 Core, UC One, RC prep, PA`, images: ['ac05f609_802281F9-4B37-49CF-8C1D-0EEB401E8D64.jpeg'] },
+      { title: '⚠️ Tip', content: `• PA 준비
+• 필요 시 Core 준비
+• Dr.H 새 파일 준비 (SX~F2)
+• Next Nego 시 차팅 적어두기`, tip: true },
+    ]
+  },
+  {
+    id: 'endo8', cat: 'endo', emoji: '🦷', name: 'Re-endo 이어서',
+    sub: '재신경치료 계속 · Canal Enlargement',
+    keywords: ['reendo','re-endo','재신경','이어서','enlargement','hfile'],
+    sections: [
+      { title: '전체 Flow', content: `마취 → 캐비톤 제거 → Canal enlargement → Canal medication w/ calcium hydroxide` },
+      { title: '진료준비 [Dr.W / Dr.G]', content: `인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.30, 04.35)
+파일꽂이, NaOcl (여러개)
+캐비톤 / 스타퍼, 메탈석션
+칼시팩스, W/L 메모지, UC One, H file`, images: ['8af0a247_A51CDC07-EDDA-4742-A38F-3A8717E39554.jpeg'] },
+      { title: '진료준비 [Dr.H]', content: `인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.35, 04.40)
+파일꽂에 새 파일 준비 (F2-F4)
+NaOcl (여러개), 캐비톤 / 스타퍼
+메탈석션, 칼시팩스, W/L 메모지, UC One`, images: ['60290260_IMG_5383.jpeg'] },
+      { title: '진료준비 [Dr.L]', content: `인젝 (리도카인)
+Endo explorer + endo ruler
+기본 bur + endo bur
+Paper point (보통 04.25, 04.35)
+파일꽂에 새 파일 준비 (F2-F4)
+NaOcl (여러개), 캐비톤 / 스타퍼
+메탈석션, 칼시팩스, W/L 메모지
+UC One, RC prep`, images: ['1156d58a_54E85548-B6B1-458F-BA1F-DE97EA2CB40C.jpeg'] },
+      { title: '⚠️ Tip', content: `• Dr.H 새 파일 준비 (F2~F3 or F4)
+• Next Nego 시 차팅 적어두기`, tip: true },
+    ]
+  },
+  {
+    id: 'endo9', cat: 'endo', emoji: '🦷', name: 'Re-endo 마무리',
+    sub: '재신경치료 Canal Filling · 코어',
+    keywords: ['reendo','re-endo','재신경','마무리','canal','filling','ceraseal','gp'],
+    sections: [
+      { title: '전체 Flow', content: `마취 → 캐비톤 제거 → Canal irrigation → Canal filling → Resin core` },
+      { title: '진료준비', content: `기본 bur + endo bur + prep bur (전치부는 세라폴 준비)
+Endo explorer, Endo ruler
+NaOcl, Ceraseal
+P.P 04.30 or 04.35
+G.P ML.029, Gp cone cutter, Plugger
+Duo alpha & beta, uc one
+Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
+Clamp, rubber dam forcep, rubber dam
+인접치 충치깊거나 pano·pa 보고 필요시 토플마이어 준비
+PA 카트Tip` },
+      { title: '⚠️ Tip', content: `• Dr.H 새 파일 준비 (F2~F3 or F4)`, tip: true },
+    ]
+  },
+  {
+    id: 'endo10', cat: 'endo', emoji: '🦷', name: 'Post 제거',
+    sub: '기존 포스트 제거',
+    keywords: ['post','제거','fiber','metal','코어','endo','bur'],
+    sections: [
+      { title: '전체 Flow', content: `기존 오염된 코어 및 치질 제거
+메탈 or fiber post 제거` },
+      { title: '진료준비', content: `크기가 작은 캘리 (모스키토)
+권원장님 시저
+Dr.W 카메라
+Endo mirror
+기본 bur, Endo bur, prep bur, Dr.W bur` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 임플란트
+  // ═══════════════════════════════════════
+  {
+    id: 'impl1', cat: 'implant', emoji: '🔩', name: '임플란트 수술 전 체크',
+    sub: '전반적인 Flow · 수술 전 확인사항',
+    keywords: ['임플란트','수술전','체크','ct','prf','gbr','가이드핀','densha'],
+    sections: [
+      { title: '수술 전 체크 사항', content: `차트 확인, 수술 치식 체크
+사보험 여부 확인 (뼈이식 나눠서 하는건지, 수술 횟수 상관 있는지)
+동의서 (발치, 수술)
+PRF (치아 1 > PRF 2)
+BG후 OP: 가이드핀 여부 ck
+GBR 시 PRP 여부 ck
+CT있는지 체크! 수술 전 파노실 앞에 CT 띄워두기
+  (없으면 수술실 들어가기 전 미리 촬영)
+  (끄지X 포스트잇 붙이고 띄워놨다고 무전할 것)` },
+      { title: '수술방 준비', content: `수술상 + 수술키트 (메가젠 or 오스템)
+상악 구치부 op시 densha bur 준비` },
+    ]
+  },
+  {
+    id: 'impl2', cat: 'implant', emoji: '🔩', name: '임플란트 1차수술',
+    sub: '식립 수술 · 1st Operation',
+    keywords: ['임플란트','1차','1st','수술','식립','op','키트'],
+    sections: [
+      { title: '진료준비', content: `수술상 + 수술키트 (메가젠 or 오스템)
+상악 구치부 op시 densha bur 준비` },
+      { title: '참고', content: `서울권치과 매뉴얼_1차OP_홍소진.pptx 파일 참조` },
+    ]
+  },
+  {
+    id: 'impl3', cat: 'implant', emoji: '🔩', name: '임플란트 2차수술',
+    sub: '힐링통 연결 · 2nd Op',
+    keywords: ['임플란트','2차','2nd','수술','힐링통','isq','blade','오구'],
+    sections: [
+      { title: '전체 Flow', content: ``, images: ['c7e6a849_IMG_0864.jpeg'] },
+      { title: '진료준비', content: `Pa or pano
+Blade 15c !!!! (가장 중요!)
+2차 op 기구는 1컴 옆 UV장에 있음
+Full이나 최후방구치 일 경우 12 blade 같이 준비
+flap 여는 경우 → 니들홀더, 시저 옆에 준비만 해주기` },
+      { title: 'ISQ 구분', content: `ISQ: mini / regular 구분!
+• oss mini: 날개없음 / 메가젠 mini: 파란색
+• oss regular: 날개있음 / 메가젠 regular: 빨간색` },
+      { title: '추가 준비', content: `드라이버 준비
+힐링통 준비 (진료실 1개, 수술방 2개 있음)
+Multi인 경우 snuc 키트, 통 준비
+끝나고 PA 찍어 힐링체결 확인` },
+      { title: '약처방', content: `루틴하게 오구 1
+Full인 경우 오구 3 나갈 수도 있으니 원장님께 꼭 물어보기!` },
+    ]
+  },
+  {
+    id: 'impl4', cat: 'implant', emoji: '🔩', name: '발치지연식립',
+    sub: '발치 후 지연 식립',
+    keywords: ['발치','지연','식립','임플란트'],
+    sections: [
+      { title: '전체 Flow', content: `발치 후 일정 기간 경과 후 임플란트 식립` },
+    ]
+  },
+  {
+    id: 'impl5', cat: 'implant', emoji: '🔩', name: 'GBR (골유도재생술)',
+    sub: 'Guided Bone Regeneration',
+    keywords: ['gbr','골유도','재생','뼈이식','prp','prf'],
+    sections: [
+      { title: '개요', content: `GBR = Guided Bone Regeneration (골유도 재생술)
+임플란트 식립 시 뼈가 부족할 경우 진행` },
+    ]
+  },
+  {
+    id: 'impl6', cat: 'implant', emoji: '🔩', name: '수면 마취 수술',
+    sub: '의식하 진정법 · 세데이션',
+    keywords: ['수면','세데이션','미다졸람','케타민','트라마돌','산소포화도'],
+    sections: [
+      { title: '전체 Flow', content: `수술 전 체크리스트 작성
+회복실에서 라인 잡기: 1-2번 시도 후 안되면 항외과 가야함. 무전하기
+수술방으로 옮긴 후: 산소포화도, 혈압, 산소호흡기 장착
+  >> 산소양은 볼이 2-3사이에 오도록 조절
+  팔 접을수없게 라인잡은 팔에 고정판 대기
+미다졸람(수면제), 트라마돌(진통제) 준비
+  > 기본 미다 3ml, 트라마돌 1ml 주입
+케타민, 미다졸람 수술2 냉장고에 있음 (비번 0000)
+  > 케타민은 너무 안 주무실경우 원장님 오더하에 준비. 사용 시 0.3ml (1.5칸)
+가위형 개구기 준비
+세데이션 차트 작성` },
+      { title: '약품 관리', content: `미다졸람, 케타민은 폐기 전 포비돈 넣어 사진 촬영해야함.
+사용했던 환자 차트에 사진 올리기
+매주 금요일 수술팀에서 미다졸람, 케타민 잔량 체크 후 수정실장님한테 카톡` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 잇몸수술
+  // ═══════════════════════════════════════
+  {
+    id: 'gum1', cat: 'gum', emoji: '🩸', name: 'CTG (결합조직이식술)',
+    sub: '잇몸 이식 · 상고정장치',
+    keywords: ['ctg','결합조직','이식','상고정','1wck','2wck','drs','suture'],
+    sections: [
+      { title: '전체 Flow', content: `수술 1주일 전: 마취 후 deep sc + 약처방 7일
+수술 1일 전부터 처방 약 복용
+CTG 수술 (전포토 필수) → [전후 포토 카카오톡]
+1wck: photo, drs, 상고정장치 청소 후 다시 넣어드리기
+2wck: photo, s/o, 상고정장치 제거 → [전후 포토 카카오톡]
+  (상태에 따라 지연출혈 시 끼라고 챙겨드릴 때 있음)
+  재수술 가능성 있을 시 병원 보관 혹은 환자가 가지고 있다가 가지고 올 수 있게 할 것
+1mck: Photo` },
+    ]
+  },
+  {
+    id: 'gum2', cat: 'gum', emoji: '🩸', name: 'FGG (유리치은이식술)',
+    sub: 'Free Gingiva Graft · 각화잇몸 이식',
+    keywords: ['fgg','유리치은','이식술','palatal','공여부','blade','suture','서지핏'],
+    sections: [
+      { title: '개요', content: `Free Gingiva Graft
+치은 퇴축, 골 소실 등으로 구강 전정이 소실된 부위의 약한 잇몸을 치근단 방향으로 이동시키고,
+공여부에서 각화점막 채취 후 수혜부에 이식하여 말랑말랑한 볼 점막이나 소대의 견인력을 차단,
+구강전정을 형성한다.
+
+진행 시기:
+• 임플란트 최종 보철 세팅 3개월 경과 후 진행
+• 2nd op하면서 같이 진행
+• pr 상태에서 진행
+→ 상황마다 진행 시기가 다름
+상고정장치 제작 필요
+  (예외: 상악 2nd op와 동시에 진행하는 경우 → 공여부를 레진코어로 덮은 뒤 suture)` },
+      { title: '진료순서', content: `1. 구치부 카메라로 포토 촬영 (리트랙터로 볼 너무 당겨서 촬영 X, 교합면·정면 살짝 측면)
+2. blade로 말랑말랑한 점막을 치근단 방향으로 이동시켜 내리고 suture 고정
+3. 공여부(주로 palatal)에서 잇몸 채취 후 수혜부에 이식, suture 진행
+4. 웻거즈로 3-5분간 누르고있기
+5. 마무리 후 같은 각도로 포토 촬영` },
+      { title: '진료준비', content: `원장님 #15c blade 2개
+일자 서지컬큐렛
+카스트로비죠 니들홀더
+서지핏 6-0 13mm
+설압자
+도루코 면도날` },
+    ]
+  },
+  {
+    id: 'gum3', cat: 'gum', emoji: '🩸', name: '거미스마일 (Gummy Smile)',
+    sub: '구강전정술 · 치관확장술',
+    keywords: ['거미스마일','gummy','smile','구강전정술','치관확장술','옵트라게이트','blade','봉합'],
+    sections: [
+      { title: '개요', content: `웃을때 잇몸이 3mm 이상 과도하게 노출되는 증상
+
+개선방법:
+① 입술 근육이 과하게 올라가는 경우 → 구강전정술
+② 잇몸이 치아를 과도하게 덮는 경우 → 치관확장술`, images: ['d428a0e1_image.jpeg'] },
+      { title: '① 구강전정술', content: `윗입술 안쪽 점막을 절개 후 아래로 내려 재배치하여 봉합
+→ 웃을때 입술이 너무 위로 말려올라가지 않도록 함`, images: ['0a842a38_IMG_4081.jpeg'] },
+      { title: '② 치관확장술', content: `치아 비율 대비 잇몸이 더 많이 보이는 경우
+레이저 또는 blade로 잇몸을 절개해 잇몸과 치아 비율을 맞춤`, images: ['1aaa248a_24C3AE37-8409-4C01-B2CD-A1D173D99FCC.jpeg'] },
+      { title: 'OP 진료순서', content: `1. 페이셜, 구외포토 촬영 (정면 활짝 웃는 입술/페이셜)
+2. 마취
+3. 옵트라게이트 장착
+4. 절개선 스킨마킹
+5. 절개선 따라 15c blade로 절개 (어시: 석션 잘 하고 피 잘 닦아주기)
+6. 절개한 조직 스테인리스 스틸 볼에 두고 사진찍기
+7. 흡수성 실크로 절개부위 봉합 (흡수성 실크라 짧게 커팅)
+8. 구외포토 촬영` },
+      { title: '경과 체크', content: `1w ck: 페이셜·구외포토 / 셀라인, 카스트로비죠 시저, 원장님 핀셋, 포타딘
+2w ck s/o: 구외포토 / 동일 준비물
+1m ck: 페이셜·구외포토 / 셀라인` },
+      { title: '준비물', content: `옵트라게이트 (날개 자르기)
+15c blade 2개
+마이크로 핀셋 (ctg용)
+원장님 핀셋 (s/o용 매끈한거)
+수술용 펜 (파란 수성펜)
+웻거즈, 켈리
+얇은 석션팁, 셀라인
+카스트로비죠 니들홀더
+서지핏 6-0 13mm 2개
+딘시저
+스테인리스 스틸 볼` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 보철
+  // ═══════════════════════════════════════
+  {
+    id: 'pros1', cat: 'prosthesis', emoji: '👑', name: 'Impression (인상채득)',
+    sub: '임플란트 인상 · Single/Multi/Coping',
+    keywords: ['impression','인상','임플란트','single','multi','coping','scan','imp'],
+    sections: [
+      { title: 'Single implant', content: `단일 임플란트 인상채득` },
+      { title: 'Multi case', content: `다수 임플란트 인상채득` },
+      { title: 'Coping imp', content: `코핑 인상채득` },
+      { title: 'Scan imp', content: `디지털 스캔 인상채득` },
+    ]
+  },
+  {
+    id: 'pros2', cat: 'prosthesis', emoji: '👑', name: 'SNUC (PR, ZR)',
+    sub: 'Screw type 보철 연결',
+    keywords: ['snuc','스크류','screw','pr','zr','토크','hex','depth','abut'],
+    sections: [
+      { title: '특징', content: `Screw type 보철
+Single Case 사용 X
+Path 맞아야 함` },
+      { title: '진료준비 (연결 시)', content: `Dr: Cover, H.A 등 풀고 depth gauge로 depth 측정
+원장님 불러주는 길이 듣고 abut 꺼내서 스캔바디(S)랑 연결 (1.2 Hex Driver)
+→ 전용 2.15 Hex Driver에 꽂아드리기 (자주 쓰는 3·4mm는 미리 연결됨)
+토크렌치 사용:
+  · 상악 30N / 하악 40N
+  · 상악 isq에 따라 20N까지, 최종 때 30N 리타이트닝
+Dr: 1.2hex driver로 스캔바디만 풀어서 방향 변경 (Flat한 면이 Buccal로)` },
+    ]
+  },
+  {
+    id: 'pros3', cat: 'prosthesis', emoji: '👑', name: '즉시로딩 pr(snuc)',
+    sub: '즉시 부하 임시보철',
+    keywords: ['즉시로딩','pr','snuc','임시보철'],
+    sections: [
+      { title: '개요', content: `임플란트 식립 직후 임시보철 연결` },
+    ]
+  },
+  {
+    id: 'pros4', cat: 'prosthesis', emoji: '👑', name: 'CPR / CZR',
+    sub: '임플란트 최종 보철',
+    keywords: ['cpr','czr','크라운','porcelain','zirconia','보철'],
+    sections: [
+      { title: '전체 Flow', content: `전반적인 Flow 및 진료준비 작성 중` },
+    ]
+  },
+  {
+    id: 'pros5', cat: 'prosthesis', emoji: '👑', name: '라미네이트',
+    sub: 'Laminate Veneer · 심미 보철',
+    keywords: ['라미네이트','laminate','veneer','심미','전치부'],
+    sections: [
+      { title: '개요', content: `라미네이트 베니어 진료준비 및 술식 작성 중` },
+    ]
+  },
+  {
+    id: 'pros6', cat: 'prosthesis', emoji: '👑', name: '고딕아치',
+    sub: 'Gothic Arch Tracing',
+    keywords: ['고딕아치','gothic','arch','교합','기록'],
+    sections: [
+      { title: '개요', content: `고딕아치 트레이싱을 통한 교합 채득` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 보존
+  // ═══════════════════════════════════════
+  {
+    id: 'cons1', cat: 'conservation', emoji: '🔬', name: 'Crown Setting (Zir/Gold)',
+    sub: '크라운 세팅 · 지르코니아/금',
+    keywords: ['crown','setting','크라운','세팅','zir','gold','후지셈','포세린','교합지','심스탁'],
+    sections: [
+      { title: '전체 Flow', content: `Tem 제거 → 잔여 시멘트 제거 (헥사+코튼팔렛) → 시적 → 마진 및 치실 Contact ck → 교합 조정 → Setting` },
+      { title: '진료준비 [Zir Cr - Dr.W]', content: `기본 Bur + Zir bur + Dr.W zir polishing bur
+교합지 2ea + 심스탁 1ea
+헥사 + 코튼팔렛 (트레이 위 준비)
+후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼
+치실
+Fg angle (파란색 몽둥이 버 주로 사용)` },
+      { title: '진료준비 [Zir Cr - Dr.H]', content: `기본 Bur + Zir bur
+교합지 2ea + 심스탁 1ea (바세린 발라놓기)
+헥사 + 코튼팔렛 (트레이 위 준비)
+후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼, 치실, 페이스 쉴드` },
+      { title: '진료준비 [Zir Cr - Dr.L]', content: `기본 Bur + Zir bur
+교합지 2ea + 심스탁 1ea
+헥사 + 코튼팔렛, 후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼, 치실, 페이스 쉴드` },
+      { title: '진료준비 [Zir Cr - Dr.G]', content: `기본 Bur + Zir bur
+교합지 2ea + 심스탁 1ea
+헥사 + 코튼팔렛, 후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼, 치실
+contact 조정 시 Dr.G 전용 스프레이 (1번 중앙대 core 칸), 페이스 쉴드` },
+      { title: '진료준비 [Gold Cr - Dr.W]', content: `기본 Bur + gold polishing bur
+교합지 2ea + 심스탁 1ea
+헥사 + 코튼팔렛, 후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼, 치실
+Fg angle (파란색 몽둥이 버 주로 사용)` },
+      { title: '진료준비 [Gold Cr - Dr.H]', content: `기본 Bur + gold polishing bur
+교합지 2ea + 심스탁 1ea (바세린 발라놓기)
+헥사 + 코튼팔렛, 후지셈 + 믹싱패드 + 스파츌라
+포세린 그리퍼, 치실, 페이스 쉴드` },
+      { title: '진료술식 (원장님 오시기 전)', content: `1. 임시치아 제거 후 헥사메딘볼로 잉여 시멘트 제거
+2. 크라운 시적 (코튼롤로 교합하여 크라운 정확히 들어가게끔 시적)
+3. 마진 확인 (보철물이 지대치 마진에 들어맞는지 확인)
+4. 치실로 컨택 확인
+5. 원장님 오시기 전 협설에 넣을 코튼롤 및 거즈 준비` },
+      { title: '진료술식 (원장님 오신 후)', content: `1. 컨택 상황 원장님께 보고 드리기
+2. 교합 조정 시 교합지 사용하면 에어 불어드리기 & 로우 핸드피스 Zir bur 사용 시 라이트 맞추고 에어 불어드리기
+   - Dr.G air X (메탈석션만)
+3. 교합 조정 후 믹스 말씀 해주시면 스파츌러로 후지셈 믹스 & 마이크로 브러쉬로 내면에 바르기
+   → 협설 방향 맞춰서 원장님 바로 잡아서 크라운 넣을 수 있도록 손바닥에 올려서 드리기
+   + 시멘트 양 조절하기 (빡빡하게 들어가는데 시멘트 많이 넣으면 잉여 제거 오래걸림)
+4. 환자분 가슴에 미리 핀셋 올려두고 코튼롤 꺼내서 들고 있기 (크라운 접착 후 바로 코튼롤 물 수 있도록)
+5. 5분 타이머 맞춰놓은 후 꽉 무시라고 안내 드리기 (2분30초 정도 뒤 제거 시 잘 됨)
+6. 잉여 시멘트 제거 → 치은 연하 안에 들어있는 시멘트까지 꼼꼼히 제거
+7. 치실로 컨택 부위 시멘트 제거
+8. 헥사메딘볼로 크라운 위 남아있는 시멘트까지 제거
+9. 한번 더 환자분 교합 확인 후 이상 없으면 세팅파노 찍고 out` },
+      { title: '⚠️ Tip', content: `• 바운딩 있는 경우 5m 물려놓고 원장님 콜
+• 특이사항 있는 경우 노티 드리기
+• Cr 부착 시 코튼롤 준비
+• Gold Cr인 경우 라이트 보철물에 직접 쏘기 X (빛 반사)`, tip: true },
+    ]
+  },
+  {
+    id: 'cons2', cat: 'conservation', emoji: '🔬', name: 'Inlay Setting (Emax/Gold)',
+    sub: '인레이 세팅 · 이맥스/금',
+    keywords: ['inlay','setting','인레이','세팅','emax','gold','불산','멀티링크','모노본드'],
+    sections: [
+      { title: '전체 Flow', content: `퀵/퍼밋 제거 → 와동 내 잔여 충전물 제거 (헥사+코튼팔렛) → Inlay 시적 → Inlay 전처리 → Inlay set → 교합조정 → PA` },
+      { title: '진료준비 [Dr.W]', content: `교합지2 + 심스탁1
+기본 bur + inlay polishing bur
+엣칭 + 헥사 + 코튼팔렛
+Inlay set 통 (멀티링크 a,b bond + 불산 + 세멘 + 모노본드) + 큐어링
+Sticks, 치실, Fg Angle
+Gold inlay인 경우 인레이시터, gold polishing bur 준비` },
+      { title: '진료준비 [Dr.H]', content: `교합지2 + 심스탁1 (바세린 발라두기)
+기본 bur + inlay polishing bur
+엣칭 + 헥사 + 코튼팔렛
+Inlay set 통 (멀티링크 a,b bond + 불산 + 세멘 + 모노본드) + 큐어링
+Sticks, 치실, 페이스 쉴드
+Gold inlay인 경우 인레이시터, gold polishing bur 준비` },
+      { title: '진료준비 [Dr.L / Dr.G]', content: `교합지2 + 심스탁1
+기본 bur + inlay polishing bur
+엣칭 + 헥사 + 코튼팔렛
+Inlay set 통 (멀티링크 a,b bond + 불산 + 세멘 + 모노본드) + 큐어링
+Sticks, 치실, 페이스 쉴드
+Gold inlay인 경우 인레이시터, gold polishing bur 준비` },
+      { title: '진료술식 (전처리 - 원장님 오시기 전)', content: `1. 퍼밋 제거 후 인레이 시적 (헥사메딘 볼로 소독 후 시적)
+2. 치실로 컨택 확인 (잘 들어가는지, 탐침으로 걸리는 부위 없는지, 컨택 상태 확인)
+3. 시적 후 잘 맞으면 불산으로 인레이 내면 전처리
+4. 불산 수세 → 종이컵에 대고 수세 (인레이 떨어트리지 않게 주의)
+5. 불산 전처리 후 보철물 내면에 모노본드 발라 준 후 에어 불기 → 하얗게 표면 올라옴
+6. 치아 들어가는 방향 (원장님 방향) → 스틱이 M(근심) + 직각으로 스틱 꺾이게끔
+7. 거즈 위 코튼팔렛 준비 + A본드 한방울 본딩 트레이에 떨어트린 후 위에 거즈 한장 올려두기 (굳지 않게)` },
+      { title: '진료술식 (Set - 원장님 오신 후)', content: `1. 컨택 원장님께 노티 드리기
+2. 헥사 볼로 닦고 엣칭 및 수세
+3. 본딩 트레이 & 코튼팔렛 올려둔 거즈 환자분 가슴 위에 올려두기
+   → 엣칭 후 본딩 조금 떨어진 상태로 B 떨어트리기 → 마이크로브러쉬로 섞어서 원장님 드리기
+4. 믹스해주세요 하면 멀티링크 믹스 → 내면에만 바르기
+5. 스틱 뜯어낼 수 있게 붙인 후 핀셋으로 잡아드리기
+6. 잉여 세맨 코튼팔렛으로 제거
+7. 핀셋으로 인레이 누르고 계시면 2-3초 먼저 큐어링 (2급 와동 아닐 경우 9번으로)
+8. 치실 사용 시에 잡아드리기 → 가운데 누르기
+9. 10초 완전히 큐어링
+10. 헥사메딘볼로 크라운 위 남아있는 시멘트까지 제거
+11. 교합조정 → 세라믹 버 사용하여 인레이 연마 시 물 한방울씩 떨어트려주기
+12. 원장님 가신 후 잉여 세멘 남아있는지 확인 (PA 촬영 필수)` },
+      { title: '⚠️ Tip', content: `• 방습 필수. 하악인 경우 가능한 석션으로 혀 누른 상태로 세팅
+• 치아에 바로 물 발사할 경우 튀기는 경우 많으니 타구대나 환자 협점막에 살살 누른 후 흘려주기
+• Inlay 작기 때문에 잃어버릴 가능성 높음. 불산 세척할 때 종이컵에 거즈 넣어서 세척
+• 치아 연속으로 여러개 세팅할 경우 시적한 순서대로 드려야 함 (언더컷 걸리는 경우 remake)
+• 이마스터 기공소 의뢰 (7일 소요)`, tip: true },
+    ]
+  },
+  {
+    id: 'cons3', cat: 'conservation', emoji: '🔬', name: 'Inlay Prep & Imp',
+    sub: '인레이 삭제 및 인상채득',
+    keywords: ['inlay','prep','imp','인레이','삭제','인상','퀵','퍼밋','heavy','light','body'],
+    sections: [
+      { title: '전체 Flow (Prep)', content: `기존 충전물 및 인레이 제거 or 치질 삭제
+필요시 core` },
+      { title: '진료준비 [Dr.W]', content: `인젝 (아티카인 - 마취 5m 대기)
+기본 버 (우식 깊을 경우 endo bur)
+메탈석션
+core set (etching, Beautifil Flow Resin BW, A2-A30 flow resin, 큐어링)
+Se bond or Opti bond (주로 se bond)
+Fg angle, spoon excavater
+시린지 타입 글리세린` },
+      { title: '진료준비 [Dr.H]', content: `인젝 (아티카인 - 마취 10m 대기)
+기본 버 + 파란색띠 inlay bur 새 거
+메탈석션
+core set (etching, A2-A30 flow resin, 큐어링)
+Se bond or 3M single bond
+이노짓, spoon excavater, 페이스 쉴드` },
+      { title: '진료준비 [Dr.L / Dr.G]', content: `인젝 (아티카인)
+기본 버
+메탈석션
+core set (etching, Beautifil Flow Resin BW, A2-A30 flow resin)
+Se bond or Opti bond
+이노짓, spoon excavater, 페이스 쉴드` },
+      { title: '진료술식 (Prep)', content: `1. 마취
+2. 기존 충전물 및 인레이 제거 또는 치질 삭제
+3. 필요시 core & 이노짓
+4. 큐어링
+5. (Dr.W) 글리세린 도포 후 큐어링` },
+      { title: '진료준비 (Imp)', content: `쉐이드 가이드
+러버용 얇은 트레이
+heavy / light body
+교합지 1개
+퀵 / 퍼밋` },
+      { title: '진료술식 (Imp)', content: `1. prep 후 imp 뜨기 (와동 긁듯이 라이트 바디 주입)
+2. 퀵 채우기
+→ 교합지 찍히는 곳 X (탈락 가능성 높기 때문) / 치아 이동 방지로 컨택도 매꿔야 함` },
+      { title: '퀵/퍼밋 충전 방법', content: `1. 컨택부터 짜기 (컨택 밑으로 잇몸 눌리지 않게 주의)
+2. 어느정도 채우고 explorer로 정돈 & 변연 부위 explorer로 퀵 긁어서 올려주기
+3. 손가락으로 교합면 쓸어서 치아 부위에 묻은 퀵 닦아주기
+4. 큐어링 후 explorer로 걸리는 부위 확인 → 있을 경우 손등에 조금 짜서 그 부위만 충전
+5. 큐어링 후 교합 ck
+
+주의사항:
+1. 교합 낮게 설정 (조금이라도 교합이 닿으면 금새 탈락)
+2. 교합을 낮게 형성 하되 변연은 꼼꼼하게 채워야 기공 제작 기간 동안 시리지 않음
+3. Explorer로 걸리는 부위가 없는지 확인
+4. 충전 시 치아 면 위로 코팅되지 않게끔 주의
+5. 교합지 찍히는지 확인` },
+      { title: '⚠️ Tip', content: `• 블랙트라이앵글존 있을 경우 퀵으로 매꾸고 imp
+• 와동 내면 기포 생기거나 트레이 문 경우 re-imp
+• 사랑니 또는 골융기 등 이유로 바이트 안 물리는 경우 러버 뜨고 바이트 떠서 보내야 함
+• 잇몸 하방으로 inlay 마진 내려간 경우 cord 넣고 imp
+• 이마스터 기공소 의뢰 (7일 소요)`, tip: true },
+    ]
+  },
+  {
+    id: 'cons4', cat: 'conservation', emoji: '🔬', name: 'Cr Prep (vital/non-vital)',
+    sub: '크라운 삭제 · 생활치/비생활치',
+    keywords: ['cr','prep','크라운','삭제','vital','non','vital','브릿지','바이트쉘'],
+    sections: [
+      { title: '전체 Flow (Vital Cr)', content: `기존 충전물 & 보철물 제거 또는 치질 삭제
+필요시 core
+Prep` },
+      { title: '⚠️ Tip', content: `• 전치부/구치부 브릿지는 바이트쉘 찍어두기
+• 환자 크라운 삼키지 않도록 주의: 메탈석션 준비한 상태로 집중
+• PA 찍고 수복물 제거 청구
+• Gold inlay & Gold cr 제거 시 적출물 동의서 받고 챙겨드리기`, tip: true },
+    ]
+  },
+  {
+    id: 'cons5', cat: 'conservation', emoji: '🔬', name: 'CLP (치관확장술)',
+    sub: 'Crown Lengthening Procedure',
+    keywords: ['clp','치관확장','crown','lengthening','blade','suture','캘리퍼','프루브'],
+    sections: [
+      { title: '전체 Flow', content: `마취 → 치관확장술 진행` },
+      { title: '진료준비', content: `#12 blade
+#15c blade
+게이지
+페리오스틸 엘리베이터
+FG angle
+딘시져
+니들홀더
+6-0 silk
+셀라인
+일반 bur + 라운드 버
+버니어 캘리퍼
+프루브`, images: ['3c1abafe_IMG_5588.jpeg'] },
+    ]
+  },
+  {
+    id: 'cons6', cat: 'conservation', emoji: '🔬', name: 'Apico (치근단수술)',
+    sub: 'Apicoectomy · 치근단 절제술',
+    keywords: ['apico','치근단','수술','apicoectomy','mta','window','수술bur'],
+    sections: [
+      { title: '진료준비', content: `Bur (Surgical bur, Diamond)
+Prep bur (루트 커팅용)
+Surgical bur round (카바이드) - Window Opening용
+Op kit
+Apico 기구 set
+메탈스파츌라, 유리 믹싱판, MTA, 코튼팔렛
+시린지 - 멸균증류수 1ea + 셀라인 1ea`, images: ['1f073e4b_image.png'] },
+      { title: '참고', content: `술식 및 준비 동원원장님 ck 필요 여쭤보고 적어야함` },
+    ]
+  },
+  {
+    id: 'cons7', cat: 'conservation', emoji: '🔬', name: '전문가 미백',
+    sub: '원내 미백 · Finedam',
+    keywords: ['미백','finedam','파인댐','shade','큐어링','립와이더','광조사','전문가미백'],
+    sections: [
+      { title: '전체 Flow', content: `1. 치면 정리 및 연마
+2. Shade photo (전)
+3. 주의사항 설명
+4. 미백용 개구기 착용
+5. Finedam 쌓기
+6. 미백제 도포
+7. 광조사` },
+      { title: '진료준비', content: `Shade guide
+카메라 / 립와이더
+Finedam / 미백제 (냉장고 벽면)
+마이크로브러쉬
+미백용 개구기 (소독실 건조대)
+큐어링
+메탈석션` },
+    ]
+  },
+  {
+    id: 'cons8', cat: 'conservation', emoji: '🔬', name: '1st Op (보존)',
+    sub: '보존 첫 번째 진료',
+    keywords: ['1st','op','보존','첫날'],
+    sections: [
+      { title: '개요', content: `보존 첫 번째 수술 진료 내용 작성 중` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 레진
+  // ═══════════════════════════════════════
+  {
+    id: 'resin1', cat: 'resin', emoji: '💊', name: 'Bonding System',
+    sub: '본딩 시스템 · 접착제 선택',
+    keywords: ['bonding','bond','본딩','optibond','opti','se','cervical','resin'],
+    sections: [
+      { title: 'Caries tx / Resin build-up / Endo치아 resin core', content: `Optibond FL 주로 사용` },
+      { title: 'Cervical resin', content: `증례에 따라 적합한 본딩 선택` },
+    ]
+  },
+  {
+    id: 'resin2', cat: 'resin', emoji: '💊', name: 'Core System',
+    sub: '코어 재료 선택 · Dr별 준비물',
+    keywords: ['core','코어','bw','ow','etching','optibond','vital','non','전치부'],
+    sections: [
+      { title: 'Dr.W - Endo core (non-vital)', content: `etching, BW 2ea, Opti bond`, images: ['2d62f182_IMG_4497.jpeg'] },
+      { title: 'Dr.W - Vital core', content: `etching, BW 2ea, 필요 시 beautifil flow resin (A2~A30), Opti bond or Se bond (보통 Opti)`, images: ['34a709f0_9CAA0AB1-062D-4944-BA6A-4CBEFB8AC448.jpeg'] },
+      { title: 'Dr.W - 전치부 core (vital/non-vital)', content: `etching, BW 2ea, OW resin (색 때문에 보통 사용), Charm core (필요 시), 필요 시 BW core, Opti bond`, images: ['9e7f3c88_IMG_4501.jpeg'] },
+      { title: 'Dr.W - Inlay core', content: `etching, beautifil flow resin A2-A30, Se bond or 요청 시 Opti` },
+      { title: 'Dr.H - Endo core (non-vital)', content: `etching, BW 2ea, OW resin, 3M Single bond`, images: ['84562724_IMG_4498.jpeg'] },
+      { title: 'Dr.H - Vital core', content: `etching, Majesty flow resin, OW resin, SM single bond or 요청 시 Se bond (보통 single bond)` },
+      { title: 'Dr.H - 전치부 Core', content: `etching, BW 2ea, OW resin, SM single bond`, images: ['3695a0f3_IMG_4498.jpeg'] },
+      { title: 'Dr.G - Endo core (non-vital)', content: `etching, BW 2ea, Opti bond`, images: ['2d4b07d2_IMG_4497.jpeg'] },
+    ]
+  },
+  {
+    id: 'resin3', cat: 'resin', emoji: '💊', name: '레진빌드업',
+    sub: 'Resin Build-up · 레진 재건',
+    keywords: ['레진','빌드업','build','up','마제스티','packerble','polishing','글리세린'],
+    sections: [
+      { title: '전체 Flow', content: `기존 충전물 및 보철물 제거
+Spoon excavater 사용하여 잔여 우식 제거
+아쿠아 케어 사용하여 잔여 착색 및 우식 제거
+Etching 후 수세
+Opti or SE bond 사용
+마제스티 flow resin or OA2 resin 사용하여 base 깔기
+Packerble resin 사용
+교합 조정, Polishing
+글리세린 도포 후 큐어링 후 포토`, images: ['8cfaa3a9_IMG_5845.jpeg'] },
+    ]
+  },
+  {
+    id: 'resin4', cat: 'resin', emoji: '💊', name: '전치부 레진 (Diastema)',
+    sub: '치간이개 레진 · 전치부 미용',
+    keywords: ['전치부','diastema','레진','치간이개','바이오클리어','나일론스트립','flow'],
+    sections: [
+      { title: '전체 Flow', content: `방습 (코튼롤 + 거즈)
+Etching 및 수세
+Bonding
+나일론 스트립 사용 후 큐어링
+바이오클리어 사용 or 나일론 스트립 사용
+Flow resin + gun resin 사용
+교합 조정 및 polishing` },
+      { title: '진료준비 [Dr.W]', content: `러버댐 set (#209 clamp * 2ea) - 원장님 여쭤보고 준비
+Dr.W 레진 빌드업 기구
+flow resin (#A1, A2) + 큐어링 + 프로택터
+교합지
+엣칭 + 본딩 (여쭤보고 드리기) + 마이크로브러쉬
+투명스트립 + 메탈스트립
+소플랙스 + 프록시말 스트립
+기본 버 + 레진 폴리싱 버
+레진 어플리케이터 + 패커블 레진
+바이오클리어
+치실
+캡슐형 건타입 레진 (shade 3개)
+페이스트 + 폴리싱 버
+권원장님 핀셋, #12 blade`, images: ['2d23d5b5_IMG_5390.jpeg'] },
+      { title: '진료준비 [Dr.H]', content: `flow resin (#A1, A2) + 큐어링 + 프로택터
+교합지
+엣칭 + 본딩 (N본드) + 마이크로브러쉬
+투명스트립 + 메탈스트립
+소플랙스 + 프록시말 스트립
+기본 버 + 레진 폴리싱 버
+레진 어플리케이터 + 패커블 레진
+바이오클리어 (노랑색 small size or A103 자주 쓰심, 치아 큰 경우 blue kit 준비)
+치실, 캡슐형 건타입 레진 (shade 3개), 권원장님 핀셋` },
+      { title: '진료준비 [Dr.L]', content: `flow resin (#A1, A2) + 큐어링 + 프로택터
+교합지
+엣칭 + 본딩 (N본드) + 마이크로브러쉬
+투명스트립 + 메탈스트립
+소플랙스 + 프록시말 스트립
+기본 버 + 레진 폴리싱 버
+레진 어플리케이터 + 패커블 레진
+바이오클리어 (노랑색 small size or A103, 치아 큰 경우 blue kit 준비)
+치실, 캡슐형 건타입 레진 (shade 3개), 권원장님 핀셋` },
+      { title: '⚠️ Tip', content: `• 진료 전 후 contrast photo wet 하게 찍기`, tip: true },
+    ]
+  },
+  {
+    id: 'resin5', cat: 'resin', emoji: '💊', name: '구치부 레진',
+    sub: '구치부 충전 · 방습 필수',
+    keywords: ['구치부','레진','방습','코튼롤','etching','bonding','flow','packerble','polishing'],
+    sections: [
+      { title: '전체 Flow', content: `방습 (코튼롤 + 거즈)
+Etching 및 수세
+Bonding
+Flow resin (필요 시 패커블레진) 사용
+교합 조정 및 폴리싱` },
+    ]
+  },
+  {
+    id: 'resin6', cat: 'resin', emoji: '💊', name: '재료 및 기구',
+    sub: '레진 재료 및 기구 목록',
+    keywords: ['재료','기구','레진','재료목록','기구목록'],
+    sections: [
+      { title: '참고', content: `레진 재료 및 기구 페이지 참조 (Notion 페이지: 재료 및 기구)
+상세 이미지는 Notion에서 확인` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 장비
+  // ═══════════════════════════════════════
+  {
+    id: 'equip1', cat: 'equipment', emoji: '⚙️', name: 'X-ray',
+    sub: 'PA · Pano · CT 촬영',
+    keywords: ['xray','x-ray','pa','pano','파노','ct','촬영','방사선'],
+    sections: [
+      { title: '전체 Flow', content: `X-ray 촬영 방법 작성 중` },
+    ]
+  },
+  {
+    id: 'equip2', cat: 'equipment', emoji: '⚙️', name: 'TMD',
+    sub: '턱관절 장치',
+    keywords: ['tmd','턱관절','장치','교합','스플린트'],
+    sections: [
+      { title: '개요', content: `TMD 장치 및 관련 진료 내용 작성 중` },
+    ]
+  },
+  {
+    id: 'equip3', cat: 'equipment', emoji: '⚙️', name: '스캐너',
+    sub: '구강 스캐너 · 디지털 인상',
+    keywords: ['스캐너','scanner','디지털','인상','구강','scan'],
+    sections: [
+      { title: '개요', content: `구강 스캐너 사용 방법 작성 중` },
+    ]
+  },
+  {
+    id: 'equip4', cat: 'equipment', emoji: '⚙️', name: '아쿠아케어',
+    sub: '아쿠아케어 · 우식 제거',
+    keywords: ['아쿠아케어','aquacare','우식제거','착색'],
+    sections: [
+      { title: '개요', content: `아쿠아케어 사용 방법 작성 중` },
+    ]
+  },
+  {
+    id: 'equip5', cat: 'equipment', emoji: '⚙️', name: '물방울레이저',
+    sub: '레이저 치료 장비',
+    keywords: ['물방울','레이저','laser','잇몸','치료'],
+    sections: [
+      { title: '개요', content: `물방울레이저 사용 방법 작성 중` },
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // 용어
+  // ═══════════════════════════════════════
+  {
+    id: 'terms1', cat: 'terms', emoji: '📖', name: '약어·용어 정리',
+    sub: '자주 쓰는 치과 약어 모음',
+    keywords: ['용어','약어','pa','pano','ao','ce','cf','isq','gbr','prf','ctg','fgg','naocl','s/o','drs','오구','caviton','snuc','cpr','czr'],
+    sections: [
+      { title: '촬영·진단', content: `PA = Periapical X-ray (치근단 방사선 사진)
+Pano = Panoramic X-ray (파노라마)
+CT = Cone Beam CT (3D 구강 CT)` },
+      { title: '신경치료 (엔도)', content: `A/O = Access Opening (신경치료 첫날 개구)
+C/E = Canal Enlargement (근관 확대)
+C/F = Canal Filling (근관 충전)
+NaOCl = 차아염소산나트륨 (근관세척액)
+Calcipex / 칼시팩스 = 수산화칼슘 약제
+Ceraseal = 근관 실러
+Caviton = 임시충전재` },
+      { title: '임플란트', content: `ISQ = Implant Stability Quotient (임플란트 안정성 수치)
+GBR = Guided Bone Regeneration (골유도 재생술)
+PRF = Platelet-Rich Fibrin (혈소판 풍부 피브린)
+SNUC = Screw type 보철 종류
+1차 OP = 임플란트 식립 수술
+2차 OP = 힐링통 연결 수술` },
+      { title: '잇몸수술', content: `CTG = Connective Tissue Graft (결합조직이식술)
+FGG = Free Gingival Graft (유리치은이식술)
+s/o = Suture Out (실밥 제거)
+drs = Dressing (드레싱)` },
+      { title: '보철·보존', content: `pr = Provisional cr (임시보철)
+CPR = Custom abt + Provisional cr
+CZR = Custom abt + Zirconia cr
+PFM = Porcelain Fused Metal
+CLP = Crown Lengthening Procedure (치관확장술)
+Apico = Apicoectomy (치근단절제술)
+ck = Check
+op = 수술
+오구 = 오구멘틴 (항생제)
+1w / 2w / 1m = 1주 / 2주 / 1달 후 내원` },
+      { title: '의사 선생님 이니셜', content: `Dr.W / Dr.G / Dr.H / Dr.L
+→ 선생님마다 준비물이 다른 경우가 있음!` },
+    ]
+  },
+];
+
+// ══════════════════════════════════════════════
+// 렌더링
+// ══════════════════════════════════════════════
+let currentTab = 'all';
+let currentSearch = '';
+
+function renderSection(s, q) {
+  let html = '<div class="section">';
+  html += `<div class="sec-title">${escHtml(s.title)}</div>`;
+  if (s.images && s.images.length > 0) {
+    s.images.forEach(img => {
+      html += `<img src="./images/${img}" class="sec-img" loading="lazy" onerror="this.style.display='none'">`;
+    });
+  }
+  if (s.content) {
+    const text = hl(s.content, q);
+    if (s.tip) {
+      html += `<div class="tip-box"><div class="sec-content">${text}</div></div>`;
+    } else {
+      html += `<div class="sec-content">${text}</div>`;
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderAll() {
+  const content = document.getElementById('content');
+  const noResult = document.getElementById('no-result');
+  const q = currentSearch.toLowerCase().trim();
+
+  let items = DATA;
+
+  if (currentTab !== 'all') {
+    items = items.filter(d => d.cat === currentTab);
+  }
+
+  if (q) {
+    items = items.filter(d => {
+      const hay = [d.name, d.sub, ...d.keywords, ...d.sections.map(s => s.title + (s.content || ''))].join(' ').toLowerCase();
+      return q.split(' ').every(w => hay.includes(w));
+    });
+  }
+
+  if (items.length === 0) {
+    content.innerHTML = '';
+    noResult.style.display = 'flex';
+    return;
+  }
+  noResult.style.display = 'none';
+  noResult.style.flexDirection = '';
+
+  const forceOpen = q.length > 0;
+
+  content.innerHTML = items.map(d => `
+    <div class="card ${forceOpen ? 'open' : ''}" id="card-${d.id}">
+      <div class="card-header" data-card="${d.id}">
+        <div class="card-title">
+          <span class="card-emoji">${d.emoji}</span>
+          <div>
+            <div class="card-name">${hl(d.name, q)}</div>
+            <div class="card-sub">${escHtml(d.sub)}</div>
+          </div>
+        </div>
+        <span class="card-arrow">▼</span>
+      </div>
+      <div class="card-body">
+        ${d.sections.map(s => renderSection(s, q)).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function hl(text, q) {
+  if (!q) return escHtml(text);
+  let result = escHtml(text);
+  q.split(' ').filter(Boolean).forEach(w => {
+    const re = new RegExp(escRe(w), 'gi');
+    result = result.replace(re, m => `<mark>${m}</mark>`);
+  });
+  return result;
+}
+function escHtml(t) {
+  if (!t) return '';
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+}
+
+function toggle(id) {
+  const card = document.getElementById('card-' + id);
+  const wasOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => {
+      const top = card.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 60);
+  }
+}
+
+function setTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderAll();
+  document.getElementById('content').scrollTop = 0;
+}
+
+function onSearch() {
+  const val = document.getElementById('search').value;
+  currentSearch = val;
+  document.getElementById('clear-btn').style.display = val ? 'flex' : 'none';
+  renderAll();
+}
+
+function clearSearch() {
+  document.getElementById('search').value = '';
+  currentSearch = '';
+  document.getElementById('clear-btn').style.display = 'none';
+  renderAll();
+}
+
+renderAll();
+
+// 모바일 웹뷰 터치 이벤트 위임 (카카오톡 인앱 브라우저 호환)
+function handleInteraction(e) {
+  const tab = e.target.closest('[data-tab]');
+  if (tab) {
+    if (e.type === 'touchend') e.preventDefault();
+    setTab(tab.dataset.tab, tab);
+    return;
+  }
+  const header = e.target.closest('[data-card]');
+  if (header) {
+    if (e.type === 'touchend') e.preventDefault();
+    toggle(header.dataset.card);
+  }
+}
+document.addEventListener('touchend', handleInteraction, { passive: false });
+document.addEventListener('click', handleInteraction);
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+
+let deferredPrompt = null;
+const installBanner = document.getElementById('install-banner');
+const installBtn = document.getElementById('install-btn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBanner.style.display = 'flex';
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') installBanner.style.display = 'none';
+    deferredPrompt = null;
+  });
+}
+document.getElementById('install-close')?.addEventListener('click', () => {
+  installBanner.style.display = 'none';
+});
+
+window.addEventListener('appinstalled', () => {
+  installBanner.style.display = 'none';
+});
+</script>
+</body>
+</html>

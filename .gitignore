@@ -1,0 +1,5 @@
+서울권치과_매뉴얼_오프라인.html
+*.py
+img_urls*.txt
+__pycache__/
+.claude/
