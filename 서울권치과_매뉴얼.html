@@ -253,9 +253,11 @@ const DATA = [
     sections: [
       { title: '전체 Flow', content: `마취 (구치부: 아티카인, 마취 콜 먼저!)
 러버댐
+Caries 심해 Wall 쌓아야 하는 경우 or 2급 와동 Core 쌓고 진행
 Access Opening
 Working length determination
 Canal enlargement (보통 F2까지, 석회화 심한 경우 S1·S2까지)
+→ File 사용 시 알콜+거즈 솜으로 닦기
 Canal medication (수산화칼슘 약제 처치)
 Cotton + Caviton → 알콜 cotton으로 표면 정리` },
       { title: '진료준비 [Dr.W / Dr.G / Dr.L]', content: `인젝 (아티카인/리도카인)
@@ -275,11 +277,41 @@ Core (wall 쌓고 시작할 경우, 2급 와동 시 토플마이어 준비)
   · Gold cr → 330 bur
   · Gold inlay → 330 + spoon excavater
   · PFM → zir cutting bur + 330
-필요 시 UC One` },
+필요 시 UC One`, images: ['IMG_5067.jpeg','IMG_5090.jpeg'] },
       { title: '진료준비 [Dr.H]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
 NaOcl, Calcipex, p.p 04.25
 Clamp, rubber dam forcep, xs gloves, shield (필수!)
-신경관 막혀있을 경우 새 파일 (첫날 sx ~ f2)` },
+신경관 막혀있을 경우 새 파일 (첫날 sx ~ f2)`, images: ['IMG_5139.jpeg'] },
+      { title: '러버댐 사용법', content: `치과치료 시술 중 타액 오염방지 및 약품·기구의 연조직 접촉 방지를 위한 방습법
+
+【러버댐 준비】
+1. 러버댐 시트 반짝이는 부위가 구강을 향하도록
+   (진료에 방해되는 빛 반사되는 면이 반대로 간다고 생각하면 쉬움)
+2. 러버댐 펀치로 가운데 구멍 뚫기
+   (여러개 뚫어야 하는 경우 5mm 간격)
+3. 클램프 걸기 (클램프 뒷쪽 부분이 목구멍을 향하도록)
+• 원장님 오더 없는 경우 걸어두지 X
+⭐ 러버댐 포셉은 일자만 사용`, images: ['IMG_5151.jpeg','IMG_5149.jpeg','IMG_5093.jpeg'] },
+      { title: '첫날 술식 ①~⑬', content: `① 마취 (endo 시작날은 무조건 마취 콜 먼저)
+② 러버댐 착용 (치아 하나: explore 사용 / 여러 개: 핀셋 사용)
+   → Dr.H: 클램프만 사용. buccal 쪽 클램프 안으로 코튼롤 넣기 ⭐
+③ 캐비톤 제거 (endo zx bur 또는 스케일러)
+   · Dr.W → endo zx bur  /  Dr.H → scaler
+④ NaOcl 소독 (치아 distal 부위에 메탈석션. NaOcl tip 걸리지 않도록 주의)
+   → Dr.H: 클램프만 사용 → 환자 목에 떨어지지 않게 주의 (에어프런 필수) ⭐
+⑤ Root ZX 고리 걸기 (치료 치아 반대 악) → 러버댐 사용 시 고인 물 석션
+⑥ K-file, Niti file 번갈아 사용
+   → Niti file 사용 시 거즈 안에 알콜솜 넣어서 닦기
+   (W/L 길이 맞춘 러버 스타퍼 당기지 않게 날만 닦기. 보통 근관 2개 이상부터)
+⑦ Niti file 내려놓으면 보통 NaOcl 사용 → 메탈 석션 준비
+   (re-endo·근관 막힘·C형 근관은 NaOcl 많이 사용 → 미리 준비)
+⑧ Paper point 사용 (코튼팔렛, 캐비톤 준비)
+   → 구멍 크기 직접 보고 준비 / Dr.H 양 여유있게
+⑨ 칼시팩스 사용 (코튼팔렛 구멍 크기 맞춰 만들기)
+⑩ 코튼팔렛 사용 → 캐비톤 드리기 (치아 2개: 양쪽에 캐비톤 / 어려우면 체어 내 스타퍼)
+⑪ 캐비톤 사용 → 알콜 코튼팔렛 드리기
+⑫ 러버댐 제거 후 물양치
+⑬ PA 찍고 out` },
       { title: '⚠️ Tip', content: `• 첫날은 상 차리기 전 마취 콜 먼저!
 • Root 끝까지 나온 PA 촬영
 • Endo 동의서 (crack tooth → crack 동의서 / 보철 제거 시 → 적출물 동의서)
@@ -289,34 +321,69 @@ Clamp, rubber dam forcep, xs gloves, shield (필수!)
   {
     id: 'endo2', cat: 'endo', emoji: '🦷', name: '엔도 두번째날 C/E',
     sub: 'Canal Enlargement · 근관 확대',
-    keywords: ['엔도','신경','두번째','ce','canal','enlargement','캐비톤'],
+    keywords: ['엔도','신경','두번째','ce','canal','enlargement','캐비톤','메모지'],
     sections: [
-      { title: '전체 Flow', content: `마취
+      { title: '전체 Flow', content: `마취 (첫째날 치수제거 많이 한 상태면 바로 하는 경우 많음)
 캐비톤 제거
 Canal enlargement (주로 F3·F4 / 전치부·팔라탈캐널은 F5까지도)
-Canal medication (수산화칼슘 약제 처치)` },
+Canal medication w/ calcium hydroxide (수산화칼슘 약제 처치)` },
       { title: '진료준비 [Dr.W / Dr.G / Dr.H]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
 NaOcl, Calcipex
 p.p 보통 04.30 / 04.35
 Clamp, rubber dam forcep + rubber dam 필수
-s gloves, 파일꽂이` },
+s gloves, 파일꽂이`, images: ['IMG_5142.jpeg'] },
       { title: '진료준비 [Dr.H 별도]', content: `기본기구, Endo explorer, 기본 bur, Endo ruler
 NaOcl, Seline, Calcipex, p.p 04.35
 Clamp, rubber dam forcep (rubber dam X)
 xs gloves
-스케일러 팁 (캐비톤 제거 시)` },
+스케일러 팁 (캐비톤 제거 시)`, images: ['IMG_5140.jpeg'] },
+      { title: '두번째날 술식 ①~⑬', content: `① 마취
+② 러버댐 착용 (치아 하나: explore / 여러 개: 핀셋)
+   → Dr.H: 클램프만 사용. buccal 쪽 클램프 안으로 코튼롤 넣기 ⭐
+③ 캐비톤 제거 (endo zx bur 또는 스케일러)
+   · Dr.W → endo zx / Dr.H → scaler
+④ NaOcl 소독 (치아 distal 부위에 메탈석션)
+   → Dr.H: 클램프만 사용 → 환자 목에 떨어지지 않게 주의 (에어프런 필수) ⭐
+⑤ Root ZX 고리 걸기 (치료 치아 반대 악) → 러버댐 사용 시 고인 물 석션
+⑥ K-file, Niti file 번갈아 사용
+   → Niti file: 거즈 안에 알콜솜 넣어서 닦기
+   (러버 스타퍼 당기지 않게 날만 닦기 / 보통 근관 2개 이상부터)
+⑦ Niti file 내려놓으면 NaOcl → 메탈 석션
+⑧ Paper point 사용 (코튼팔렛, 캐비톤 준비)
+   → 구멍 크기 직접 보고 준비 / Dr.H 양 여유있게
+⑨ 칼시팩스 사용 (코튼팔렛 구멍 크기에 맞게 준비)
+⑩ 코튼팔렛 → 캐비톤 드리기
+⑪ 캐비톤 → 알콜 코튼팔렛 드리기
+⑫ 러버댐 제거 후 물양치
+⑬ PA 찍고 out
+⭐ 근관 세척(CI) 한번 더 하는 경우 2일차와 똑같이 준비 (soaking 시 시간 여쭤보고 메모)` },
+      { title: 'Endo 메모지 작성법', content: `⭐ Endo 메모지 써놓는 방법 ⭐
+
+1. 치식 (순서대로 ex: #12,11,21,22)
+2. endo 시작 / 이어서 등 오늘 진행하는 진료
+   (왜 진행하는지 같이 써놓기 ex: crack 의심, 우식, Fx 등)
+3. MB/MB2 등 기록된 W/L 길이
+4. 사용한 파일 (ex: F2/F3/profile 04.35)
+5. patency O/X 여부
+   - 신경관이 막혀있어 확보 안 됐을 때 patency X 표기
+6. c.c: 신경치료 후 너무 아팠어요 같은 사항 적어놓기
+7. patency 확보 안 된 경우 / IAF / Nego 등 특이사항 차팅 시 메모지에 적어두기
+
+【Nego (Negotiation)】근관이 막혀있거나 좁을 때 기구(file)로 길을 찾아 통로를 확보하는 과정
+【IAF (Initial Apical File)】근관 끝까지 처음 도달한 가장 작은 파일 사이즈 → 근관 초기 직경 판단 기준`, images: ['IMG_5137.jpeg'] },
       { title: '⚠️ Tip', content: `• Working length, 확대파일, Patency 여부 체크해서 적어놓기
 • 첫째날 못 찾은 신경관 있거나 특이사항 있으면 적어놓기
+• 대기 길어져 캐비톤 제거 시 원장님 노티 후 제거 (Dr.W: 러버댐 걸고 제거)
 • NaOcl 뚜껑 꽉 잠구기`, tip: true },
     ]
   },
   {
     id: 'endo3', cat: 'endo', emoji: '🦷', name: '엔도 세번째날 C/F',
     sub: 'Canal Filling · 근관 충전',
-    keywords: ['엔도','신경','세번째','cf','canal','filling','충전','gp','ceraseal'],
+    keywords: ['엔도','신경','세번째','cf','canal','filling','충전','gp','ceraseal','core','코어'],
     sections: [
       { title: '전체 Flow', content: `마취 → 캐비톤 제거 → Canal irrigation → Canal filling → Resin core` },
-      { title: '진료준비 [Dr.W / Dr.G / Dr.L]', content: `기본 bur + endo bur + prep bur (전치부: 세라폴)
+      { title: '진료준비 [Dr.W]', content: `기본 bur + endo bur + prep bur (전치부: 세라폴)
 Endo explorer, Endo ruler
 NaOcl, Ceraseal
 P.P 04.30 or 04.35
@@ -325,10 +392,70 @@ Duo alpha & beta, uc one
 Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
 Clamp, rubber dam forcep, rubber dam
 인접치 충치 깊거나 pano·pa 보고 필요시 토플마이어 준비
-PA 카트` },
-      { title: '진료준비 [Dr.H]', content: `동일하나 rubber dam X` },
+PA 카트`, images: ['IMG_5728.jpeg'] },
+      { title: '진료준비 [Dr.H]', content: `기본 bur + prep bur (전치부: 세라폴)
+Endo explorer, Endo ruler
+NaOcl, Ceraseal, P.P 04.35
+G.P ML.029, Gp cone cutter, Plugger
+Duo alpha & beta, UC one
+Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
+Clamp, rubber dam forcep (rubber dam X)
+인접치 충치 깊거나 pano·pa 보고 필요시 토플마이어 준비
+PA 카트`, images: ['IMG_5730.jpeg'] },
+      { title: '진료준비 [Dr.G]', content: `기본 bur + endo bur + prep bur (전치부: 세라폴)
+Endo explorer, Endo ruler
+NaOcl, Ceraseal, P.P 04.35
+G.P ML.029, Gp cone cutter, Plugger
+Duo alpha & beta, uc one
+Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
+Clamp, rubber dam forcep, rubber dam
+인접치 충치 깊거나 pano·pa 보고 필요시 토플마이어 준비
+PA 카트`, images: ['IMG_5829.jpeg'] },
+      { title: '진료준비 [Dr.L]', content: `기본 bur + endo bur + prep bur (전치부: 세라폴)
+Endo explorer, Endo ruler
+NaOcl / Saline, Ceraseal
+P.P 04.30 or 04.35
+G.P ML.029, Gp cone cutter, Plugger
+Duo alpha & beta, uc one
+Resin Core set (Etching + universal bond + BW resin + charmcore + 큐어링)
+Clamp, rubber dam forcep, rubber dam
+인접치 충치 깊거나 pano·pa 보고 필요시 토플마이어 준비
+PA 카트`, images: ['IMG_5830.jpeg'] },
+      { title: '마지막날 술식 ①~⑬', content: `① 마취 (re-endo 시작, 2nd·3rd날엔 마취 후 바로 endo 진행)
+   → Dr.W: 마취 후 앉아서 물양치 시켜드림
+② 러버댐 착용
+③ 캐비톤 제거 (Dr.W: endo zx bur / Dr.H: scaler)
+④ NaOcl 소독
+⑤ Root ZX 고리 걸기 (치료 치아 반대 악) → 러버댐 사용 시 고인 물 석션
+   ※ Dr.H W/L 측정 X. 말씀하시면 걸어드리기
+⑥ K-file, Niti file 번갈아 사용 → Niti file: 거즈 안에 알콜솜으로 닦기
+⑦ Niti file 내려놓으면 NaOcl → 메탈 석션
+⑧ Paper point 사용 & GP cone 커터기로 자르시면 알콜솜 트레이 위에 올려두기
+   → Dr.H: GP cone 자르면 환자 가슴 위 거즈에 놓으심
+⑨ GP cone 근관 내 삽입 → PA 찍을 준비
+⑩ PA 찍고 → GP cone 제거 후 (알콜솜 새걸로) 실러 충전
+   → "약 넣는 중인데 조금 시큰하실 수 있어요" 멘트
+⑪ GP cone 충전 시 알파 준비
+   (근관 여러 개인 경우 GP cone 다 안 넣고 사용하시는 경우 많으니 들고 있어야 함)
+⑫ 알파 사용 시 "시큰하실 수 있어요" 설명 후 팁에 묻어나오는 GP cone 거즈로 닦기
+   → Dr.H: 알파 왼손 + 오른손 핀셋으로 GP cone 빼냄 → 거즈 들고 핀셋 GP cone 잡기 + 플러거 준비 ⭐
+⑬ 알파·플러거 사용 후 베타 드리기
+   → 베타 여러 번 사용하시니 한 번 썼다고 내려놓지 않기` },
+      { title: 'Endo Core system', content: `【⭐ Endo Core 구치부 】
+Dr.W / Dr.G: Etching / BW 2ea / Opti bond
+Dr.H: Etching / BW 2ea / OW resin
+Dr.L: Etching / BW 2ea / Majesty / Opti
+
+【⭐ Endo Core 전치부 】
+Dr.W / Dr.G: Etching / BW 2ea / OW resin / Opti (필요시 BW blue / charm core)
+  - 전치부는 보통 색 때문에 OW resin 사용 (W)
+  - BW blue: 점조도 매우 높아 일반적으로 사용 X, 전치부 wall 쌓을 때 가끔 사용
+Dr.H: Etching / BW 2ea / OW resin / Single bond
+Dr.L: Etching / Majesty resin / OW resin / Opti
+
+【참코어 Tip 구분】전치부 / 소구치 / 구치부 (치식에 맞춰 준비, 최근 자주 사용 X)`, images: ['IMG_5835.jpeg','IMG_5834.jpeg','IMG_5836.jpeg','IMG_5837.jpeg','IMG_5838.jpeg','IMG_5839.jpeg','IMG_4505.jpeg','IMG_5840.jpeg','IMG_5841.jpeg','IMG_5843.jpeg','IMG_5844.jpeg'] },
       { title: '⚠️ Tip', content: `• NaOcl 뚜껑 꽉 잠구기
-• 플러거 번호 맞춰서 준비 (두께 다름)`, tip: true },
+• 플러거 번호 맞춰서 준비 (두께 다름)`, tip: true, images: ['519BC3A9-11A8-4B66-8F03-721BB8DBD0EF.jpeg'] },
     ]
   },
   {
@@ -1378,12 +1505,161 @@ Flow resin (필요 시 패커블레진) 사용
     ]
   },
   {
-    id: 'resin6', cat: 'resin', emoji: '💊', name: '재료 및 기구',
-    sub: '레진 재료 및 기구 목록',
-    keywords: ['재료','기구','레진','재료목록','기구목록'],
+    id: 'resin6', cat: 'resin', emoji: '💊', name: '재료 및 기구 종류와 용도',
+    sub: '러버댐·클램프·레진재료·기구 전체 정리',
+    keywords: ['재료','기구','레진','러버댐','클램프','이소댐','etching','bonding','opti','se bond','majesty','packable','mta','naocl','micro brush','aquacare','토플마이어','wedge','sof-lex','bur'],
     sections: [
-      { title: '참고', content: `레진 재료 및 기구 페이지 참조 (Notion 페이지: 재료 및 기구)
-상세 이미지는 Notion에서 확인` },
+      { title: '러버댐 종류', content: `【Isodam / 이소댐】
+- 가루 있는 쪽이 환자를 향하도록 프레임에 고정
+- 레진빌드업 전용`, images: ['A74999AC-614F-4006-8336-D524175474CC.jpeg'] },
+      { title: 'Clamp 종류', content: `#44  : 전치부 전용 (post 시 가끔 사용)
+#W8A
+#209 : 소구치
+#14T wing less : wing 없는 14T
+#201 : 하악 대구치용 (prep X)
+#205 : 상악/하악 대구치용 (prep X)
+#13A : 10,30번대 prep 치아용
+#12A : 20,40번대 prep 치아용
+
+【2급 와동 전용 클램프 (Garrison)】
+크기 순서: 파란색 → 주황색 → 초록색
+최근 2급 와동 진료 시 자주 사용 중
+⭐ 2급 와동 클램프 준비 시 2급 와동 전용 재료 통 + 인접면 전용 포셉 준비`, images: ['IMG_4693.jpeg','853F2C24-0B1A-418F-9A02-EBC5BC042E0E.jpeg','5F80D15C-C540-42DF-9212-1D1F4656C000.jpeg','IMG_4451.jpeg','IMG_4452.jpeg'] },
+      { title: '2급 와동 재료 및 기구', content: `【매트릭스 밴드】
+- 인접면 클램프 사용 시 사용하는 매트릭스 밴드
+- 5.5mm: 소구치 / 6.5mm: 대구치 (인접면 클램프 전용)
+
+【Wedge / 쐐기】
+• Garrison wedge: 기본적으로 사용 (S,M Size 가장 많이 사용)
+• Separator wedge: 치아 사이 벌릴 때 (잘 사용 X)
+• Palodent wedge: 치아 사이 벌릴 때 (잘 사용 X)
+• DME wedge: Deep margin 시 사용. Cervical 쪽 와동 깊을 경우
+  - Left / Right 방향 존재. 넓은 면이 gingiva를 향하게 사용
+• Wood wedge / Wedge guard: caries 제거 시 인접치 손상 방지용
+
+【Sof-Lex】⭐ 2급 와동 포함, Diastema resin 시 준비 ⭐
+- Sof-Lex 전용 holder에 끼워 사용 / 사용 후 폐기
+- 3,6번 주로 사용
+
+【7번 distal 전용 토플마이어 & 밴드】
+
+【토플마이어】
+- 토플마이어 매트릭스 밴드 (상단) / 아이보리 매트릭스 밴드 (하단)
+- 1회용 토플마이어: 와동 큰 경우 or core 시 사용 (사용 후 폐기)
+
+【메탈 스트립 / 나일론(투명) 스트립】`, images: ['IMG_4455.jpeg','F4A0D9D5-AAE1-4578-A1B0-3DC73342598F.jpeg','77A48C5B-86CE-4D5A-A506-B7DBAAB6ED2A.jpeg','IMG_5118.jpeg','31052C33-3C16-44FF-8980-69E37A525897.jpeg','IMG_4530.jpeg','IMG_4456.jpeg','64CDF5B6-2EA1-4A42-9298-387F0ED01AFF.jpeg','08BA370C-691B-492E-9984-A86BBB411D2D.jpeg','IMG_4709.jpeg','IMG_4701.jpeg','DB2BC0C5-F84D-4627-9204-87C2FAD432AD.jpeg','IMG_4459.jpeg','IMG_4494.jpeg','IMG_5123.jpeg','IMG_4482.jpeg'] },
+      { title: '재료 종류 및 용도', content: `【Etching】
+- 3M etching: Opti bond 사용 시
+- Zero flow etching: SE bond 시 사용
+  ⭐ SE bond는 법랑질에만 도포 → 흐름성 덜한 zero flow etching 사용
+
+【Bonding】
+① Opti bond: 4세대 본딩. 본딩강도 높이고 술후 민감성 최소화
+  · Dr.W: resin 진료 시 (Vital Cr·inlay prep·post·깊은 caries 제거 제외)
+  · Dr.H: Endo core 시
+  · Dr.G: Endo core, Vital Cr 시
+  · Dr.L: Endo core 시
+  ⭐ Bonding dish 사용 (레진빌드업 전용 dish / 기본 진료용 dish 구분)
+
+② SE Bond: 5세대 자가부식형. 산부식 과정 생략
+  · Dr.W: 깊은 caries Vital 치아, inlay prep, CRF 시
+  · Dr.H: 깊은 caries Vital 치아, inlay prep(or 3M single bond), CRF 시
+  · Dr.G·Dr.L: 깊은 caries Vital 치아 (or Opti bond), CRF 시
+  ⭐ Enamel 포함 경우 SE bond 단독 사용 시 접착력 저하 → enamel만 etching 후 사용
+
+【Majesty resin & OA2 Resin】
+- 레진빌드업 시 베이스로 사용
+- Majesty resin: Dr.H vital cr에도 사용
+  - 필러함유량 하드레진 수준. 플로어블 레진의 강도·내마모성 개선
+- OA2 resin: 불투명 색조. 금속 포스트·변색 상아질·어두운 코어 위 사용
+
+【Packable resin A2/A3】
+- 점도 높은 레진. 기구로 다져서 사용
+- ⭐ 패커블 레진 사용 시 레진 워머 준비 (온도 60도 setting / Assist 자리에 위치)
+
+【Heavy type MTA & MTA tip】
+- 사용 후 매번 새 tip으로 교체
+
+【NaOcl & Saline】
+- Endo 사용 / MTA 사용 시 Cotton Pellet을 NaOcl에 묻혀서 사용
+
+【Micro brush 종류 및 용도】
+- Post 용 Tip 생김새 차이 존재
+- 레진빌드업 시 bonding 도포 시간 길어 → 기본 brush 사용 시 Tip 분리 → 전용 브러쉬 준비
+
+【U.P fiber splint (이노딧)】
+- polyethylene 섬유 직조물로 치아 접착 강화 (Ribbond 유사)
+- 레진과 치아 계면의 중합수축·물리적 충격 스트레스 감소
+- 써있는 숫자에 따라 사이즈 차이 / 전용 가위와 함께 준비
+- ⭐ 이노딧 사용 시 opti bond 쓰더라도 SE bond에 bonding만 같이 준비
+
+【Bioclear & gun type resin】
+- Diastema resin 시 준비
+- 하악전치: 보통 A103 사용 / 큰 경우 yellow small size
+- 상악전치: yellow small size or BT kit 사용
+
+【Dental Floss】
+- 일반 치실 / 테프론 치실
+- Dr.W: 클램프 구멍 여러개 뚫어서 러버댐 사용 시 둘 다 준비
+
+【Bleeding control 재료】
+- 보스민 / Cord / Cordpacker / 테프론 테이프
+- Bleeding 날 것 같은 진료 시 필수 준비
+- 러버댐 사용 시 블리딩 또는 타액 올라올 경우 테프론 얇게 말아서 cord packer로 밀어넣음
+
+【고리 치실】
+- 러버댐이 위로 들뜨거나 올라오는 것 방지 / 치은 쪽 러버댐 밀착 / moisture contamination 방지
+- ⭐ 테프론 치실만 사용. 너무 짧지 않게. 1~5번 과정 2번 반복하여 고리 만들기
+
+【Glycerin】
+- 레진 표면 공기 접촉 시 완전히 중합 안 되는 얇은 층 남음 → 글리세린 도포 후 광중합
+- 레진빌드업 시 폴리싱 후 글리세린 도포 → 큐어링 → 에어 → photo 순서
+- 일반 microbrush 사용 / Bonding dish에 같이 준비`, images: ['48D7D21C-6C12-4D82-8109-13E03E4EE91D.jpeg','IMG_4503.jpeg','IMG_4495.jpeg','IMG_4115.jpeg','IMG_5079.jpeg','IMG_4480.jpeg','IMG_4481.jpeg','485DEF72-E5D4-404B-A8CB-56B0711A905A.jpeg','IMG_4487.jpeg','IMG_4489.jpeg','AB8CB543-D803-4A3F-AE3E-BEDE788A758D.jpeg','EBC3A7A1-04E4-4151-841F-3C5FEDC73E9D.jpeg','IMG_4467.jpeg','IMG_4474.jpeg','IMG_4484.jpeg','IMG_4468.jpeg','43C4A060-8B50-4587-A1CE-652AC2A4192A.jpeg','A5A3E4F4-025F-451E-9600-564CCF01E2C3.jpeg','IMG_4147.jpeg','IMG_5122.jpeg','IMG_5116.jpeg','IMG_5115.jpeg','3D763638-F7D2-4268-9021-B3AB55215500.jpeg','9E2D67D4-1E32-4FE8-8E1A-B41A962121D1.jpeg'] },
+      { title: '기구 종류 및 용도', content: `【AquaCare】
+- 공기 + 물 + 미세 파우더 분사로 치아 표면 처리
+- 현재 착색 및 우식 제거 보조용으로 사용
+- ⭐ 준비 시: 파우더 분사 확인 / 발판 위치 / 줄 엉키지 않게 / 사용 시 러버댐으로 환자 코 가리기
+
+【Aquacare Powder】
+- 53μm powder만 사용 (29μm 파란색은 착색 제거용 → 사용 X)
+- 파우더 안 나오는 경우 뚜껑 열고 확인
+- 교체 방법: ①전원 Off → ②뚜껑 돌려 제거 → ③상부 카트리지 제거 후 하단 카트리지 밀어넣기 → ④뚜껑 체결 후 전원 On
+- ⭐ 기계의 오른쪽 파우더 사용 / 버튼 방향이 우측으로 가게끔 위치
+
+【Aquasol Fluid】
+- 아쿠아케어 전용 용액 / 여분 얼마 안 남은 경우 교체
+
+【FG angle】
+- High handpiece bur를 low handpiece에 꽂아 사용 가능하게 호환
+- Resin, inlay prep, 교합조정, caries 제거 등
+
+【레진빌드업 기구 (Optrasculpt)】
+- 매 진료 시 새걸로 교체
+
+【레진빌드업 브러쉬 Tip】
+- Red holder → 가장 작은 tip / Yellow holder → 중간 크기 tip
+
+【레진빌드업 전용 Dr.W mirror & 전용 거울 닦이】
+- 진료 시작 전 보라색 거울 닦이로 닦아서 준비
+- 항상 필름이 반만 붙어져있는 미러로 준비
+- 진료 후 새 미러 꺼내서 필름 반 잘라놓고 넣어두기
+
+【Polishing Wheel】
+- 레진빌드업 시 사용 / Premier와 같이 준비 / 사용시 물 뿌리기
+
+【Pit Resin 전용 Brush】
+- Pit resin or 레진빌드업 시 buccal pit 포함된 경우 준비
+
+【권원장님 핀셋】
+- 수술 시 얇은 실크 사용으로 S/O 때 쓰는 Dr.K 전용 핀셋
+- 작은 재료 조작 시 준비 (레진빌드업, diastema resin, post 시 등)`, images: ['IMG_5127.jpeg','IMG_5131.jpeg','IMG_5132.jpeg','IMG_5126.jpeg','IMG_5129.jpeg','IMG_5128.jpeg','IMG_4466.jpeg','IMG_4465.jpeg','IMG_5136.jpeg','IMG_4508.jpeg','D027FF04-9658-4835-9D16-C4C40D097559.jpeg','IMG_4124.jpeg','7CC4AC0A-F989-4830-9C8E-AA80D44C2371.jpeg','IMG_5125.jpeg','IMG_4507.jpeg','IMG_4524.jpeg'] },
+      { title: 'Burr 종류', content: `【기본 Bur】전체적인 진료에서 기본적으로 사용
+【Endo Bur】low handpiece에 연결하는 long neck bur
+- endo 시작 / Re-endo / CF날 / 우식 깊을 때 / 전치부 / Post 등
+【Resin polishing Bur】레진 진료 시 필수 준비
+- Dr.H: 하늘색 polishing bur 필수 / 닳아있으면 새 bur로 교체
+【Dr.W 레진빌드업 전용 Bur】
+- 전용 Bur 통에 보관 / 현재 2가지 종류 존재 / 닳으면 새 걸로 교체`, images: ['IMG_4525.jpeg','41ACC595-F8C9-4DB3-BB15-6C9489552147.jpeg','IMG_4519.jpeg','IMG_4126.jpeg','IMG_5077.jpeg','E7421B68-27D8-4F12-8660-89A55CA7BA70.jpeg','IMG_5074.jpeg'] },
     ]
   },
 
