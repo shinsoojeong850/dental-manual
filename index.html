@@ -826,17 +826,71 @@ PRF 필수. PRP 여부 체크 !!
   // ═══════════════════════════════════════
   {
     id: 'gum1', cat: 'gum', emoji: '🩸', name: 'CTG (결합조직이식술)',
-    sub: '잇몸 이식 · 상고정장치',
-    keywords: ['ctg','결합조직','이식','상고정','1wck','2wck','drs','suture'],
+    sub: 'Connective Tissue Graft · 잇몸 이식',
+    keywords: ['ctg','결합조직','이식','상고정','1wck','2wck','drs','suture','엠도게인','터널링','vista','caf','palatal'],
     sections: [
-      { title: '전체 Flow', content: `수술 1주일 전: 마취 후 deep sc + 약처방 7일
-수술 1일 전부터 처방 약 복용
+      { title: '개요', content: `CTG = Connective Tissue Graft (결합조직이식술)
+
+치은 퇴축으로 치아 뿌리가 노출되었거나, 발치 후 보철물이 pontic으로 들어가는 경우,
+또는 임플란트 진행 후 치은 볼륨이 꺼져 보이는 부위에
+공여부의 결합조직을 채취하여 수혜부에 이식하는 술식
+
+【술식 종류】
+1. VISTA technique: 수직적 절개 하나로 잇몸 이식
+2. Tunneling technique: 절개 없이 터널링하여 이식
+3. CAF (Coronally Advanced Flap): flap 전부 열어 진행
+4. 전치부 impl 1st op와 같이 진행하는 경우`, images: ['ctg_image.png','ctg_image 1.png','ctg_image 2.png','ctg_image 3.png','ctg_image 4.png','ctg_image 5.png'] },
+      { title: '전체 Flow', content: `수술 1주일 전: 마취 후 deep s/c + 약처방 7일
+수술 1일/2일 전부터 처방 약 복용
 CTG 수술 (전포토 필수) → [전후 포토 카카오톡]
 1wck: photo, drs, 상고정장치 청소 후 다시 넣어드리기
 2wck: photo, s/o, 상고정장치 제거 → [전후 포토 카카오톡]
   (상태에 따라 지연출혈 시 끼라고 챙겨드릴 때 있음)
   재수술 가능성 있을 시 병원 보관 혹은 환자가 가지고 있다가 가지고 올 수 있게 할 것
 1mck: Photo` },
+      { title: '진료순서 (수술 1주 전)', content: `1. 수술부위 잇몸 deep s/c
+   (next가 몇 달 뒤 CTG로 빠지는 경우 1주 전 deep s/c 잡기)
+2. 수술약 1주일치 처방 (하루 전 or 이틀 전부터 복용)
+→ 이때 진료실 스케줄 괜찮으면 상고정장치 미리 제작`, images: ['ctg_image 6.png'] },
+      { title: '진료순서 (수술 당일)', content: `1. 전치부 카메라로 photo 촬영
+   - 볼륨 꺼져있으면 교합면·측면 추가 촬영
+2. 상고정장치 없는 경우 먼저 제작 or 보관 중인 경우 먼저 맞춰보기
+3. 마이크로 블레이드·큐렛으로 잇몸이식할 터널 형성 (어시: 셀라인 뿌리며 석션)
+4. 자연치 root coverage의 경우 엠도게인 사용 (적용 후 코튼롤로 입술 격리)
+5. 공여부 (주로 palatal) 에서 잇몸 채취
+6. 어시가 palatal에 atelocare로 공여부 폐쇄, 상고정장치 del
+   (출혈 심한 경우 거즈로 세게 압박 후 del)
+7. 원장님께서 잇몸 채취 후 blade로 결합조직만 분리
+   → 어시는 suture 전 옵트라게이트 끼워놓기
+8. suture 전 CT 올려놓고 원장님 직접 photo 촬영
+   ⭐ 이 타이밍에 전치부 카메라 무조건 있어야 함
+9. 수혜부에 결합조직 이식, suture
+   - 실크 주로 서지핏 6/0 13mm or 블루나일론 6/0 15mm 사용 (여쭤보기)
+10. 이식편 고정 위해 치간 사이 splint하여 sling suture
+    - fixed 없는 경우 resin ball 달 거 준비
+11. 접근 절개부 봉합 (블루나일론 7/0)
+12. 마무리 포토 촬영, 주의사항 설명`, images: ['ctg_image 7.png','ctg_image 8.png','ctg_image 9.png','ctg_image 10.png','ctg_image 11.png','ctg_image 12.png','ctg_image 13.png','ctg_image 14.png','ctg_image 15.png','ctg_image 16.png','ctg_image 17.png'] },
+      { title: '준비물', content: `기본 수술기구
+마이크로 블레이드 3개: 스푼(SB003) / 바이퍼(SB004) / 길다란 일자(BW069SR)
+검정 몰트 서지컬 큐렛
+검정 프루브
+설압자
+도루코
+마이크로 핀셋 2개
+15C blade 2개 (스완모튼)
+전치부 큐렛 3개
+연마석
+카스트로비죠 니들홀더
+서지핏 6/0 13mm
+블루나일론 6/0 15mm
+블루나일론 7/0 13mm
+PDRN
+옵트라게이트
+엠도게인
+코튼롤
+에칭, Tetric N Bond, Flow resin A3O, 큐어링` },
+      { title: '케이스 참고', content: `박서현B(4507) - #32,42 oss ms fixture+CTG / #11,21 diastema
+이하윤B(12539) - #11 타원임플 re-op+CTG / #12,21 diastema`, images: ['ctg_image 18.png','ctg_image 19.png'] },
     ]
   },
   {
